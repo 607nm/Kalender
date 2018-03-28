@@ -69,7 +69,7 @@ pagesize
 	\includegraphics[width=0.95\linewidth]{\bilderpfad/#1.jpg}\\ 
 	
 	\begin{minipage}{0.95\linewidth}
-		\verbatiminput{bilder/Kalender1/#1.txt} 
+		\verbatiminput{\bilderpfad/#1.txt} 
 	\end{minipage}\\
 	
 	\monat{#2}{#3}{#4}\\ 
@@ -85,7 +85,7 @@ pagesize
 	\includegraphics[width=0.95\linewidth]{\bilderpfad/00Deckblatt.jpg}\\ 
 	
 	\begin{minipage}{0.95\linewidth}
-		\verbatiminput{bilder/auswahl/Kalender1/00Deckblatt.txt} 
+		\verbatiminput{\bilderpfad/00Deckblatt.txt} 
 	\end{minipage}\\
 	
 
@@ -106,5 +106,5 @@ pagesize
 \kalenderblatt{10Oktober}     {2018-10-01}{2018-10-last}{Oktober}
 \kalenderblatt{11November}    {2018-11-01}{2018-11-last}{November}
 \kalenderblatt{12Dezember}    {2018-12-01}{2018-12-last}{Dezember}
-%\kalenderblatt{13HappyNewYear}{2019-01-01}{2019-01-last}{Januar}
+\kalenderblatt{13HappyNewYear}{2019-01-01}{2019-01-last}{Januar}
 \end{document}
