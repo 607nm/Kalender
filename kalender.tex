@@ -1,0 +1,110 @@
+\documentclass[
+ngerman,
+headinclude=false,
+footinclude=false,
+paper=A3,
+paper=landscape,
+pagesize
+]{scrartcl}
+
+\usepackage{geometry}
+\geometry{top=5mm, left=1mm, right=1mm, bottom=5mm,
+	headsep=10mm, footskip=12mm}
+
+\usepackage{tgheros,tikz,array}
+\usepackage{verbatim}
+\usetikzlibrary{calendar}
+\usepackage{calc}
+\usepackage[utf8]{inputenc}
+
+%###########################
+\newcommand\bilderpfad{bilder/dummy}
+
+\newcommand\daytext[2]{%
+
+		\begin{tabular}
+		{@{}>{\mdseries\tiny}c@{}}
+		
+		{#1}\\
+		
+		{#2\color{black}} \\[1ex]
+		
+	\end{tabular}
+
+}
+
+\newcommand{\monat}[3]{%
+
+	\begin{tikzpicture}
+	\calendar (cal)
+	[dates=#1 to #2,day list right,day xshift=1.2cm, day text={\daytext{\%w.}{\huge\%d-}},
+	execute at begin day scope={
+		\ifdate{Sunday}{\color{red}}
+	}%,
+	%execute before day scope={
+	%	\ifdate{day of month=1}{
+	%		\pgftransformxshift{-\widthof{01}}
+	%	}{
+	%		\pgfcalendarjuliantodate{\pgfcalendarendjulian}{\currentyear}{\currentmonth}{\lastday}
+	%		\pgfmathparse{(\textwidth-\widthof{123456789}-\widthof{10111213141516171819202122232425262728}-\widthof{30}*(\lastday-28))/(\lastday-1)}
+	%		\pgftransformxshift{\pgfmathresult}     
+	%		\let\%=\pgfcalendarshorthand
+	%		\setlength{\pgf@xc}{\widthof{\%d-}}
+	%		\pgftransformxshift{\pgf@xc}
+	%	}
+	%}
+	]
+	%\ooalign{\Huge\%d-\cr\hidewidth\raisebox{1cm}{\%wt}\hidewidth}}]
+	if (weekend) [font=\bfseries]
+	if (Sunday) [red];
+	\node[left,font=\bfseries\LARGE] at (cal-#1.west) {#3};
+	
+	\end{tikzpicture}
+
+}
+
+\newcommand{\kalenderblatt}[4]{
+\centering
+\begin{tabular}{c}
+	\includegraphics[width=0.95\linewidth]{\bilderpfad/#1.jpg}\\ 
+	
+	\begin{minipage}{0.95\linewidth}
+		\verbatiminput{bilder/Kalender1/#1.txt} 
+	\end{minipage}\\
+	
+	\monat{#2}{#3}{#4}\\ 
+\end{tabular}
+
+\newpage
+}
+
+\begin{document}
+\sffamily
+\centering
+\begin{tabular}{c}
+	\includegraphics[width=0.95\linewidth]{\bilderpfad/00Deckblatt.jpg}\\ 
+	
+	\begin{minipage}{0.95\linewidth}
+		\verbatiminput{bilder/auswahl/Kalender1/00Deckblatt.txt} 
+	\end{minipage}\\
+	
+
+\end{tabular}
+
+\newpage
+
+
+\kalenderblatt{01Januar}      {2018-01-01}{2018-01-last}{Januar}
+\kalenderblatt{02Februar}     {2018-02-01}{2018-02-last}{Februar}
+\kalenderblatt{03Maerz}       {2018-03-01}{2018-03-last}{März}
+\kalenderblatt{04April}       {2018-04-01}{2018-04-last}{April}
+\kalenderblatt{05Mai}         {2018-05-01}{2018-05-last}{Mai}
+\kalenderblatt{06Juni}        {2018-06-01}{2018-06-last}{Juni}
+\kalenderblatt{07Juli}        {2018-07-01}{2018-07-last}{Juli}
+\kalenderblatt{08August}      {2018-08-01}{2018-08-last}{August}
+\kalenderblatt{09September}   {2018-09-01}{2018-09-last}{September}
+\kalenderblatt{10Oktober}     {2018-10-01}{2018-10-last}{Oktober}
+\kalenderblatt{11November}    {2018-11-01}{2018-11-last}{November}
+\kalenderblatt{12Dezember}    {2018-12-01}{2018-12-last}{Dezember}
+%\kalenderblatt{13HappyNewYear}{2019-01-01}{2019-01-last}{Januar}
+\end{document}
